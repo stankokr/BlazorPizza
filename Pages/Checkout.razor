@@ -3,18 +3,6 @@
 @inject HttpClient HttpClient
 @inject NavigationManager NavigationManager
 
-<div class="top-bar">
-    <a class="logo" href="">
-        <img src="img/logo.svg" />
-    </a>
-
-    <a href="" class="nav-tab">
-        <img src="img/pizza-slice.svg" />
-        <div>Get Pizza</div>
-    </a>
-
-</div>
-
 <div class="main">
     <div class="checkout-cols">
         <div class="checkout-order-details">
@@ -49,12 +37,12 @@
 
     bool isSubmitting;
 
-    async Task PlaceOrder()
+   async Task PlaceOrder()
     {
         isSubmitting = true;
-        var response = await HttpClient.PostAsJsonAsync(NavigationManager.BaseUri + "orders", OrderState.Order);
-        var newOrderId= await response.Content.ReadFromJsonAsync<int>();
+        var response = await HttpClient.PostAsJsonAsync($"{NavigationManager.BaseUri}orders", OrderState.Order);
+        var newOrderId = await response.Content.ReadFromJsonAsync<int>();
         OrderState.ResetOrder();
-        NavigationManager.NavigateTo("/");
+       NavigationManager.NavigateTo($"myorders/{newOrderId}");
     }   
 }

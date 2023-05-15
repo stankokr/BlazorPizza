@@ -1,9 +1,9 @@
 ﻿<Router AppAssembly="@typeof(Program).Assembly" PreferExactMatches="@true">
     <Found Context="routeData">
-        <RouteView RouteData="@routeData" />
+        <RouteView RouteData="@routeData" DefaultLayout="typeof(MainLayout)"/>
     </Found>
     <NotFound>
-        <LayoutView >
+        <LayoutView Layout="typeof(MainLayout)">
             <p>Ups, pristali ste na neveljavni lokaciji!</p>
         </LayoutView>
     </NotFound>
